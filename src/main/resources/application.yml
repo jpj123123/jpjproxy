@@ -1,0 +1,40 @@
+server:
+  port: 8086
+  session:
+    timeout: 1800
+spring:
+  application:
+    name: jpjproxy
+#spring:
+#  application:
+#    name: testboot
+  profiles:
+    active:
+      - dev
+      - ignoreurl
+      - mybatis
+      - converter
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+  freemarker:
+    template-loader-path: classpath:/templates/
+    suffix: .ftl
+  mvc:
+    static-path-pattern: /public/**
+    favicon:
+      enabled: false
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
+
+
+logging:
+  config: classpath:log4j2.xml
+
+

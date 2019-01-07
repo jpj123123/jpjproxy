@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jpjproxy.dao.CustomerEquipmentMapper" >
+  <resultMap id="BaseResultMap" type="com.jpjproxy.entity.CustomerEquipment" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+    <result column="gps_longitude" property="gpsLongitude" jdbcType="VARCHAR" />
+    <result column="gps_latitude" property="gpsLatitude" jdbcType="VARCHAR" />
+    <result column="gps_coordinate" property="gpsCoordinate" jdbcType="VARCHAR" />
+    <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, customer_id, gps_longitude, gps_latitude, gps_coordinate, device_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_customer_equipment
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_customer_equipment
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jpjproxy.entity.CustomerEquipment" >
+    insert into t_customer_equipment (id, customer_id, gps_longitude, 
+      gps_latitude, gps_coordinate, device_id, 
+      create_time)
+    values (#{id,jdbcType=BIGINT}, #{customerId,jdbcType=BIGINT}, #{gpsLongitude,jdbcType=VARCHAR}, 
+      #{gpsLatitude,jdbcType=VARCHAR}, #{gpsCoordinate,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jpjproxy.entity.CustomerEquipment" >
+    insert into t_customer_equipment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="gpsLongitude != null" >
+        gps_longitude,
+      </if>
+      <if test="gpsLatitude != null" >
+        gps_latitude,
+      </if>
+      <if test="gpsCoordinate != null" >
+        gps_coordinate,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="gpsLongitude != null" >
+        #{gpsLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="gpsLatitude != null" >
+        #{gpsLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="gpsCoordinate != null" >
+        #{gpsCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jpjproxy.entity.CustomerEquipment" >
+    update t_customer_equipment
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="gpsLongitude != null" >
+        gps_longitude = #{gpsLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="gpsLatitude != null" >
+        gps_latitude = #{gpsLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="gpsCoordinate != null" >
+        gps_coordinate = #{gpsCoordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jpjproxy.entity.CustomerEquipment" >
+    update t_customer_equipment
+    set customer_id = #{customerId,jdbcType=BIGINT},
+      gps_longitude = #{gpsLongitude,jdbcType=VARCHAR},
+      gps_latitude = #{gpsLatitude,jdbcType=VARCHAR},
+      gps_coordinate = #{gpsCoordinate,jdbcType=VARCHAR},
+      device_id = #{deviceId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByCustomerId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_customer_equipment
+    where  customer_id = #{customerId} order by id desc limit 0, 1
+  </select>
+</mapper>

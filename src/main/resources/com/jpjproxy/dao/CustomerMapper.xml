@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jpjproxy.dao.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.jpjproxy.entity.Customer" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="phone_no" property="phoneNo" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="card_number" property="cardNumber" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="headimg_url" property="headimgUrl" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="certification_status" property="certificationStatus" jdbcType="INTEGER" />
+    <result column="card_bind_status" property="cardBindStatus" jdbcType="INTEGER" />
+    <result column="addrbook_status" property="addrbookStatus" jdbcType="INTEGER" />
+    <result column="mobile_status" property="mobileStatus" jdbcType="INTEGER" />
+    <result column="zfb_status" property="zfbStatus" jdbcType="INTEGER" />
+    <result column="has_elinkman" property="hasElinkman" jdbcType="INTEGER" />
+    <result column="reg_date" property="regDate" jdbcType="TIMESTAMP" />
+    <result column="active_date" property="activeDate" jdbcType="TIMESTAMP" />
+    <result column="authed_date" property="authedDate" jdbcType="TIMESTAMP" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="client_id" property="clientId" jdbcType="VARCHAR" />
+    <result column="is_black" property="isBlack" jdbcType="INTEGER" />
+    <result column="authed_credit" property="authedCredit" jdbcType="INTEGER" />
+    <result column="agent_id" property="agentId" jdbcType="BIGINT" />
+    <result column="agent_money" property="agentMoney" jdbcType="INTEGER" />
+    <result column="sub_agent_id" property="subAgentId" jdbcType="BIGINT" />
+    <result column="sub_agent_money" property="subAgentMoney" jdbcType="INTEGER" />
+    <result column="last_loan_date" property="lastLoanDate" jdbcType="TIMESTAMP" />
+    <result column="phone_model" property="phoneModel" jdbcType="VARCHAR" />
+    <result column="sesame_score" property="sesameScore" jdbcType="INTEGER" />
+    <result column="channel" property="channel" jdbcType="TINYINT" />
+    <result column="channel_remark" property="channelRemark" jdbcType="VARCHAR" />
+    <result column="channel_time" property="channelTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, company_id, phone_no, password, name, card_number, birthday, sex, age, headimg_url, 
+    status, certification_status, card_bind_status, addrbook_status, mobile_status, zfb_status, 
+    has_elinkman, reg_date, active_date, authed_date, last_login_time, client_id, is_black, 
+    authed_credit, agent_id, agent_money, sub_agent_id, sub_agent_money, last_loan_date, 
+    phone_model, sesame_score, channel, channel_remark, channel_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_customer
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_customer
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jpjproxy.entity.Customer" >
+    insert into t_customer (id, company_id, phone_no, 
+      password, name, card_number, 
+      birthday, sex, age, headimg_url, 
+      status, certification_status, card_bind_status, 
+      addrbook_status, mobile_status, zfb_status, 
+      has_elinkman, reg_date, active_date, 
+      authed_date, last_login_time, client_id, 
+      is_black, authed_credit, agent_id, 
+      agent_money, sub_agent_id, sub_agent_money, 
+      last_loan_date, phone_model, sesame_score, 
+      channel, channel_remark, channel_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, #{phoneNo,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{cardNumber,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{sex,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{headimgUrl,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{certificationStatus,jdbcType=INTEGER}, #{cardBindStatus,jdbcType=INTEGER}, 
+      #{addrbookStatus,jdbcType=INTEGER}, #{mobileStatus,jdbcType=INTEGER}, #{zfbStatus,jdbcType=INTEGER}, 
+      #{hasElinkman,jdbcType=INTEGER}, #{regDate,jdbcType=TIMESTAMP}, #{activeDate,jdbcType=TIMESTAMP}, 
+      #{authedDate,jdbcType=TIMESTAMP}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{clientId,jdbcType=VARCHAR}, 
+      #{isBlack,jdbcType=INTEGER}, #{authedCredit,jdbcType=INTEGER}, #{agentId,jdbcType=BIGINT}, 
+      #{agentMoney,jdbcType=INTEGER}, #{subAgentId,jdbcType=BIGINT}, #{subAgentMoney,jdbcType=INTEGER}, 
+      #{lastLoanDate,jdbcType=TIMESTAMP}, #{phoneModel,jdbcType=VARCHAR}, #{sesameScore,jdbcType=INTEGER}, 
+      #{channel,jdbcType=TINYINT}, #{channelRemark,jdbcType=VARCHAR}, #{channelTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jpjproxy.entity.Customer" >
+    insert into t_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="phoneNo != null" >
+        phone_no,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="cardNumber != null" >
+        card_number,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="headimgUrl != null" >
+        headimg_url,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="certificationStatus != null" >
+        certification_status,
+      </if>
+      <if test="cardBindStatus != null" >
+        card_bind_status,
+      </if>
+      <if test="addrbookStatus != null" >
+        addrbook_status,
+      </if>
+      <if test="mobileStatus != null" >
+        mobile_status,
+      </if>
+      <if test="zfbStatus != null" >
+        zfb_status,
+      </if>
+      <if test="hasElinkman != null" >
+        has_elinkman,
+      </if>
+      <if test="regDate != null" >
+        reg_date,
+      </if>
+      <if test="activeDate != null" >
+        active_date,
+      </if>
+      <if test="authedDate != null" >
+        authed_date,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+      <if test="clientId != null" >
+        client_id,
+      </if>
+      <if test="isBlack != null" >
+        is_black,
+      </if>
+      <if test="authedCredit != null" >
+        authed_credit,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="agentMoney != null" >
+        agent_money,
+      </if>
+      <if test="subAgentId != null" >
+        sub_agent_id,
+      </if>
+      <if test="subAgentMoney != null" >
+        sub_agent_money,
+      </if>
+      <if test="lastLoanDate != null" >
+        last_loan_date,
+      </if>
+      <if test="phoneModel != null" >
+        phone_model,
+      </if>
+      <if test="sesameScore != null" >
+        sesame_score,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="channelRemark != null" >
+        channel_remark,
+      </if>
+      <if test="channelTime != null" >
+        channel_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="phoneNo != null" >
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null" >
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="headimgUrl != null" >
+        #{headimgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="certificationStatus != null" >
+        #{certificationStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cardBindStatus != null" >
+        #{cardBindStatus,jdbcType=INTEGER},
+      </if>
+      <if test="addrbookStatus != null" >
+        #{addrbookStatus,jdbcType=INTEGER},
+      </if>
+      <if test="mobileStatus != null" >
+        #{mobileStatus,jdbcType=INTEGER},
+      </if>
+      <if test="zfbStatus != null" >
+        #{zfbStatus,jdbcType=INTEGER},
+      </if>
+      <if test="hasElinkman != null" >
+        #{hasElinkman,jdbcType=INTEGER},
+      </if>
+      <if test="regDate != null" >
+        #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activeDate != null" >
+        #{activeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="authedDate != null" >
+        #{authedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clientId != null" >
+        #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="isBlack != null" >
+        #{isBlack,jdbcType=INTEGER},
+      </if>
+      <if test="authedCredit != null" >
+        #{authedCredit,jdbcType=INTEGER},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=BIGINT},
+      </if>
+      <if test="agentMoney != null" >
+        #{agentMoney,jdbcType=INTEGER},
+      </if>
+      <if test="subAgentId != null" >
+        #{subAgentId,jdbcType=BIGINT},
+      </if>
+      <if test="subAgentMoney != null" >
+        #{subAgentMoney,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoanDate != null" >
+        #{lastLoanDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phoneModel != null" >
+        #{phoneModel,jdbcType=VARCHAR},
+      </if>
+      <if test="sesameScore != null" >
+        #{sesameScore,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=TINYINT},
+      </if>
+      <if test="channelRemark != null" >
+        #{channelRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="channelTime != null" >
+        #{channelTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jpjproxy.entity.Customer" >
+    update t_customer
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="phoneNo != null" >
+        phone_no = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null" >
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="headimgUrl != null" >
+        headimg_url = #{headimgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="certificationStatus != null" >
+        certification_status = #{certificationStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cardBindStatus != null" >
+        card_bind_status = #{cardBindStatus,jdbcType=INTEGER},
+      </if>
+      <if test="addrbookStatus != null" >
+        addrbook_status = #{addrbookStatus,jdbcType=INTEGER},
+      </if>
+      <if test="mobileStatus != null" >
+        mobile_status = #{mobileStatus,jdbcType=INTEGER},
+      </if>
+      <if test="zfbStatus != null" >
+        zfb_status = #{zfbStatus,jdbcType=INTEGER},
+      </if>
+      <if test="hasElinkman != null" >
+        has_elinkman = #{hasElinkman,jdbcType=INTEGER},
+      </if>
+      <if test="regDate != null" >
+        reg_date = #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activeDate != null" >
+        active_date = #{activeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="authedDate != null" >
+        authed_date = #{authedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clientId != null" >
+        client_id = #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="isBlack != null" >
+        is_black = #{isBlack,jdbcType=INTEGER},
+      </if>
+      <if test="authedCredit != null" >
+        authed_credit = #{authedCredit,jdbcType=INTEGER},
+      </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=BIGINT},
+      </if>
+      <if test="agentMoney != null" >
+        agent_money = #{agentMoney,jdbcType=INTEGER},
+      </if>
+      <if test="subAgentId != null" >
+        sub_agent_id = #{subAgentId,jdbcType=BIGINT},
+      </if>
+      <if test="subAgentMoney != null" >
+        sub_agent_money = #{subAgentMoney,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoanDate != null" >
+        last_loan_date = #{lastLoanDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phoneModel != null" >
+        phone_model = #{phoneModel,jdbcType=VARCHAR},
+      </if>
+      <if test="sesameScore != null" >
+        sesame_score = #{sesameScore,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=TINYINT},
+      </if>
+      <if test="channelRemark != null" >
+        channel_remark = #{channelRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="channelTime != null" >
+        channel_time = #{channelTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jpjproxy.entity.Customer" >
+    update t_customer
+    set company_id = #{companyId,jdbcType=BIGINT},
+      phone_no = #{phoneNo,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      card_number = #{cardNumber,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      sex = #{sex,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      headimg_url = #{headimgUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      certification_status = #{certificationStatus,jdbcType=INTEGER},
+      card_bind_status = #{cardBindStatus,jdbcType=INTEGER},
+      addrbook_status = #{addrbookStatus,jdbcType=INTEGER},
+      mobile_status = #{mobileStatus,jdbcType=INTEGER},
+      zfb_status = #{zfbStatus,jdbcType=INTEGER},
+      has_elinkman = #{hasElinkman,jdbcType=INTEGER},
+      reg_date = #{regDate,jdbcType=TIMESTAMP},
+      active_date = #{activeDate,jdbcType=TIMESTAMP},
+      authed_date = #{authedDate,jdbcType=TIMESTAMP},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      client_id = #{clientId,jdbcType=VARCHAR},
+      is_black = #{isBlack,jdbcType=INTEGER},
+      authed_credit = #{authedCredit,jdbcType=INTEGER},
+      agent_id = #{agentId,jdbcType=BIGINT},
+      agent_money = #{agentMoney,jdbcType=INTEGER},
+      sub_agent_id = #{subAgentId,jdbcType=BIGINT},
+      sub_agent_money = #{subAgentMoney,jdbcType=INTEGER},
+      last_loan_date = #{lastLoanDate,jdbcType=TIMESTAMP},
+      phone_model = #{phoneModel,jdbcType=VARCHAR},
+      sesame_score = #{sesameScore,jdbcType=INTEGER},
+      channel = #{channel,jdbcType=TINYINT},
+      channel_remark = #{channelRemark,jdbcType=VARCHAR},
+      channel_time = #{channelTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

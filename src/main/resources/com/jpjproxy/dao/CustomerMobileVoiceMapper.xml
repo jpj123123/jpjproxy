@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jpjproxy.dao.CustomerMobileVoiceMapper" >
+  <resultMap id="BaseResultMap" type="com.jpjproxy.entity.CustomerMobileVoice" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+    <result column="phone_no" property="phoneNo" jdbcType="VARCHAR" />
+    <result column="is_address" property="isAddress" jdbcType="INTEGER" />
+    <result column="is_emergent" property="isEmergent" jdbcType="INTEGER" />
+    <result column="voice_number" property="voiceNumber" jdbcType="VARCHAR" />
+    <result column="address_name" property="addressName" jdbcType="VARCHAR" />
+    <result column="voice_type" property="voiceType" jdbcType="VARCHAR" />
+    <result column="voice_duration" property="voiceDuration" jdbcType="INTEGER" />
+    <result column="voice_place" property="voicePlace" jdbcType="VARCHAR" />
+    <result column="voice_date" property="voiceDate" jdbcType="TIMESTAMP" />
+    <result column="voice_status" property="voiceStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, customer_id, phone_no, is_address, is_emergent, voice_number, address_name, voice_type, 
+    voice_duration, voice_place, voice_date, voice_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_customer_mobile_voice
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_customer_mobile_voice
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jpjproxy.entity.CustomerMobileVoice" >
+    insert into t_customer_mobile_voice (id, customer_id, phone_no, 
+      is_address, is_emergent, voice_number, 
+      address_name, voice_type, voice_duration, 
+      voice_place, voice_date, voice_status
+      )
+    values (#{id,jdbcType=BIGINT}, #{customerId,jdbcType=BIGINT}, #{phoneNo,jdbcType=VARCHAR}, 
+      #{isAddress,jdbcType=INTEGER}, #{isEmergent,jdbcType=INTEGER}, #{voiceNumber,jdbcType=VARCHAR}, 
+      #{addressName,jdbcType=VARCHAR}, #{voiceType,jdbcType=VARCHAR}, #{voiceDuration,jdbcType=INTEGER}, 
+      #{voicePlace,jdbcType=VARCHAR}, #{voiceDate,jdbcType=TIMESTAMP}, #{voiceStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jpjproxy.entity.CustomerMobileVoice" >
+    insert into t_customer_mobile_voice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="phoneNo != null" >
+        phone_no,
+      </if>
+      <if test="isAddress != null" >
+        is_address,
+      </if>
+      <if test="isEmergent != null" >
+        is_emergent,
+      </if>
+      <if test="voiceNumber != null" >
+        voice_number,
+      </if>
+      <if test="addressName != null" >
+        address_name,
+      </if>
+      <if test="voiceType != null" >
+        voice_type,
+      </if>
+      <if test="voiceDuration != null" >
+        voice_duration,
+      </if>
+      <if test="voicePlace != null" >
+        voice_place,
+      </if>
+      <if test="voiceDate != null" >
+        voice_date,
+      </if>
+      <if test="voiceStatus != null" >
+        voice_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="phoneNo != null" >
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isAddress != null" >
+        #{isAddress,jdbcType=INTEGER},
+      </if>
+      <if test="isEmergent != null" >
+        #{isEmergent,jdbcType=INTEGER},
+      </if>
+      <if test="voiceNumber != null" >
+        #{voiceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="addressName != null" >
+        #{addressName,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceType != null" >
+        #{voiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceDuration != null" >
+        #{voiceDuration,jdbcType=INTEGER},
+      </if>
+      <if test="voicePlace != null" >
+        #{voicePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceDate != null" >
+        #{voiceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voiceStatus != null" >
+        #{voiceStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jpjproxy.entity.CustomerMobileVoice" >
+    update t_customer_mobile_voice
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="phoneNo != null" >
+        phone_no = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isAddress != null" >
+        is_address = #{isAddress,jdbcType=INTEGER},
+      </if>
+      <if test="isEmergent != null" >
+        is_emergent = #{isEmergent,jdbcType=INTEGER},
+      </if>
+      <if test="voiceNumber != null" >
+        voice_number = #{voiceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="addressName != null" >
+        address_name = #{addressName,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceType != null" >
+        voice_type = #{voiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceDuration != null" >
+        voice_duration = #{voiceDuration,jdbcType=INTEGER},
+      </if>
+      <if test="voicePlace != null" >
+        voice_place = #{voicePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="voiceDate != null" >
+        voice_date = #{voiceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voiceStatus != null" >
+        voice_status = #{voiceStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jpjproxy.entity.CustomerMobileVoice" >
+    update t_customer_mobile_voice
+    set customer_id = #{customerId,jdbcType=BIGINT},
+      phone_no = #{phoneNo,jdbcType=VARCHAR},
+      is_address = #{isAddress,jdbcType=INTEGER},
+      is_emergent = #{isEmergent,jdbcType=INTEGER},
+      voice_number = #{voiceNumber,jdbcType=VARCHAR},
+      address_name = #{addressName,jdbcType=VARCHAR},
+      voice_type = #{voiceType,jdbcType=VARCHAR},
+      voice_duration = #{voiceDuration,jdbcType=INTEGER},
+      voice_place = #{voicePlace,jdbcType=VARCHAR},
+      voice_date = #{voiceDate,jdbcType=TIMESTAMP},
+      voice_status = #{voiceStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

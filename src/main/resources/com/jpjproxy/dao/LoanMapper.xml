@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jpjproxy.dao.LoanMapper" >
+  <resultMap id="BaseResultMap" type="com.jpjproxy.entity.Loan" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+    <result column="loan_type" property="loanType" jdbcType="INTEGER" />
+    <result column="req_date" property="reqDate" jdbcType="TIMESTAMP" />
+    <result column="req_money" property="reqMoney" jdbcType="INTEGER" />
+    <result column="handle_fee" property="handleFee" jdbcType="INTEGER" />
+    <result column="handle_fee_payid" property="handleFeePayid" jdbcType="BIGINT" />
+    <result column="down_money" property="downMoney" jdbcType="INTEGER" />
+    <result column="loan_status" property="loanStatus" jdbcType="INTEGER" />
+    <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="auditor_id" property="auditorId" jdbcType="BIGINT" />
+    <result column="audit_remark" property="auditRemark" jdbcType="VARCHAR" />
+    <result column="down_type" property="downType" jdbcType="INTEGER" />
+    <result column="down_time" property="downTime" jdbcType="TIMESTAMP" />
+    <result column="downer_id" property="downerId" jdbcType="BIGINT" />
+    <result column="down_img" property="downImg" jdbcType="VARCHAR" />
+    <result column="down_remark" property="downRemark" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="last_overdue_time" property="lastOverdueTime" jdbcType="TIMESTAMP" />
+    <result column="next_overdue_time" property="nextOverdueTime" jdbcType="TIMESTAMP" />
+    <result column="late_fee" property="lateFee" jdbcType="INTEGER" />
+    <result column="off_latefee" property="offLatefee" jdbcType="INTEGER" />
+    <result column="payback_payid" property="paybackPayid" jdbcType="BIGINT" />
+    <result column="payback_date" property="paybackDate" jdbcType="TIMESTAMP" />
+    <result column="agent_id" property="agentId" jdbcType="BIGINT" />
+    <result column="agent_money" property="agentMoney" jdbcType="INTEGER" />
+    <result column="sub_agent_id" property="subAgentId" jdbcType="BIGINT" />
+    <result column="sub_agent_money" property="subAgentMoney" jdbcType="INTEGER" />
+    <result column="client_id" property="clientId" jdbcType="VARCHAR" />
+    <result column="sign_img" property="signImg" jdbcType="VARCHAR" />
+    <result column="overduer_id" property="overduerId" jdbcType="BIGINT" />
+    <result column="executionstatus" property="executionstatus" jdbcType="INTEGER" />
+    <result column="bad_userid" property="badUserid" jdbcType="BIGINT" />
+    <result column="bad_time" property="badTime" jdbcType="TIMESTAMP" />
+    <result column="handclose_id" property="handcloseId" jdbcType="BIGINT" />
+    <result column="submitTime" property="submittime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, company_id, order_no, customer_id, loan_type, req_date, req_money, handle_fee, 
+    handle_fee_payid, down_money, loan_status, audit_time, auditor_id, audit_remark, 
+    down_type, down_time, downer_id, down_img, down_remark, start_time, end_time, last_overdue_time, 
+    next_overdue_time, late_fee, off_latefee, payback_payid, payback_date, agent_id, 
+    agent_money, sub_agent_id, sub_agent_money, client_id, sign_img, overduer_id, executionstatus, 
+    bad_userid, bad_time, handclose_id, submitTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_loan
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_loan
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jpjproxy.entity.Loan" >
+    insert into t_loan (id, company_id, order_no, 
+      customer_id, loan_type, req_date, 
+      req_money, handle_fee, handle_fee_payid, 
+      down_money, loan_status, audit_time, 
+      auditor_id, audit_remark, down_type, 
+      down_time, downer_id, down_img, 
+      down_remark, start_time, end_time, 
+      last_overdue_time, next_overdue_time, late_fee, 
+      off_latefee, payback_payid, payback_date, 
+      agent_id, agent_money, sub_agent_id, 
+      sub_agent_money, client_id, sign_img, 
+      overduer_id, executionstatus, bad_userid, 
+      bad_time, handclose_id, submitTime
+      )
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, 
+      #{customerId,jdbcType=BIGINT}, #{loanType,jdbcType=INTEGER}, #{reqDate,jdbcType=TIMESTAMP}, 
+      #{reqMoney,jdbcType=INTEGER}, #{handleFee,jdbcType=INTEGER}, #{handleFeePayid,jdbcType=BIGINT}, 
+      #{downMoney,jdbcType=INTEGER}, #{loanStatus,jdbcType=INTEGER}, #{auditTime,jdbcType=TIMESTAMP}, 
+      #{auditorId,jdbcType=BIGINT}, #{auditRemark,jdbcType=VARCHAR}, #{downType,jdbcType=INTEGER}, 
+      #{downTime,jdbcType=TIMESTAMP}, #{downerId,jdbcType=BIGINT}, #{downImg,jdbcType=VARCHAR}, 
+      #{downRemark,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{lastOverdueTime,jdbcType=TIMESTAMP}, #{nextOverdueTime,jdbcType=TIMESTAMP}, #{lateFee,jdbcType=INTEGER}, 
+      #{offLatefee,jdbcType=INTEGER}, #{paybackPayid,jdbcType=BIGINT}, #{paybackDate,jdbcType=TIMESTAMP}, 
+      #{agentId,jdbcType=BIGINT}, #{agentMoney,jdbcType=INTEGER}, #{subAgentId,jdbcType=BIGINT}, 
+      #{subAgentMoney,jdbcType=INTEGER}, #{clientId,jdbcType=VARCHAR}, #{signImg,jdbcType=VARCHAR}, 
+      #{overduerId,jdbcType=BIGINT}, #{executionstatus,jdbcType=INTEGER}, #{badUserid,jdbcType=BIGINT}, 
+      #{badTime,jdbcType=TIMESTAMP}, #{handcloseId,jdbcType=BIGINT}, #{submittime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jpjproxy.entity.Loan" >
+    insert into t_loan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="loanType != null" >
+        loan_type,
+      </if>
+      <if test="reqDate != null" >
+        req_date,
+      </if>
+      <if test="reqMoney != null" >
+        req_money,
+      </if>
+      <if test="handleFee != null" >
+        handle_fee,
+      </if>
+      <if test="handleFeePayid != null" >
+        handle_fee_payid,
+      </if>
+      <if test="downMoney != null" >
+        down_money,
+      </if>
+      <if test="loanStatus != null" >
+        loan_status,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
+      </if>
+      <if test="auditorId != null" >
+        auditor_id,
+      </if>
+      <if test="auditRemark != null" >
+        audit_remark,
+      </if>
+      <if test="downType != null" >
+        down_type,
+      </if>
+      <if test="downTime != null" >
+        down_time,
+      </if>
+      <if test="downerId != null" >
+        downer_id,
+      </if>
+      <if test="downImg != null" >
+        down_img,
+      </if>
+      <if test="downRemark != null" >
+        down_remark,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="lastOverdueTime != null" >
+        last_overdue_time,
+      </if>
+      <if test="nextOverdueTime != null" >
+        next_overdue_time,
+      </if>
+      <if test="lateFee != null" >
+        late_fee,
+      </if>
+      <if test="offLatefee != null" >
+        off_latefee,
+      </if>
+      <if test="paybackPayid != null" >
+        payback_payid,
+      </if>
+      <if test="paybackDate != null" >
+        payback_date,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="agentMoney != null" >
+        agent_money,
+      </if>
+      <if test="subAgentId != null" >
+        sub_agent_id,
+      </if>
+      <if test="subAgentMoney != null" >
+        sub_agent_money,
+      </if>
+      <if test="clientId != null" >
+        client_id,
+      </if>
+      <if test="signImg != null" >
+        sign_img,
+      </if>
+      <if test="overduerId != null" >
+        overduer_id,
+      </if>
+      <if test="executionstatus != null" >
+        executionstatus,
+      </if>
+      <if test="badUserid != null" >
+        bad_userid,
+      </if>
+      <if test="badTime != null" >
+        bad_time,
+      </if>
+      <if test="handcloseId != null" >
+        handclose_id,
+      </if>
+      <if test="submittime != null" >
+        submitTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="loanType != null" >
+        #{loanType,jdbcType=INTEGER},
+      </if>
+      <if test="reqDate != null" >
+        #{reqDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reqMoney != null" >
+        #{reqMoney,jdbcType=INTEGER},
+      </if>
+      <if test="handleFee != null" >
+        #{handleFee,jdbcType=INTEGER},
+      </if>
+      <if test="handleFeePayid != null" >
+        #{handleFeePayid,jdbcType=BIGINT},
+      </if>
+      <if test="downMoney != null" >
+        #{downMoney,jdbcType=INTEGER},
+      </if>
+      <if test="loanStatus != null" >
+        #{loanStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditorId != null" >
+        #{auditorId,jdbcType=BIGINT},
+      </if>
+      <if test="auditRemark != null" >
+        #{auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="downType != null" >
+        #{downType,jdbcType=INTEGER},
+      </if>
+      <if test="downTime != null" >
+        #{downTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downerId != null" >
+        #{downerId,jdbcType=BIGINT},
+      </if>
+      <if test="downImg != null" >
+        #{downImg,jdbcType=VARCHAR},
+      </if>
+      <if test="downRemark != null" >
+        #{downRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOverdueTime != null" >
+        #{lastOverdueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextOverdueTime != null" >
+        #{nextOverdueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lateFee != null" >
+        #{lateFee,jdbcType=INTEGER},
+      </if>
+      <if test="offLatefee != null" >
+        #{offLatefee,jdbcType=INTEGER},
+      </if>
+      <if test="paybackPayid != null" >
+        #{paybackPayid,jdbcType=BIGINT},
+      </if>
+      <if test="paybackDate != null" >
+        #{paybackDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=BIGINT},
+      </if>
+      <if test="agentMoney != null" >
+        #{agentMoney,jdbcType=INTEGER},
+      </if>
+      <if test="subAgentId != null" >
+        #{subAgentId,jdbcType=BIGINT},
+      </if>
+      <if test="subAgentMoney != null" >
+        #{subAgentMoney,jdbcType=INTEGER},
+      </if>
+      <if test="clientId != null" >
+        #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="signImg != null" >
+        #{signImg,jdbcType=VARCHAR},
+      </if>
+      <if test="overduerId != null" >
+        #{overduerId,jdbcType=BIGINT},
+      </if>
+      <if test="executionstatus != null" >
+        #{executionstatus,jdbcType=INTEGER},
+      </if>
+      <if test="badUserid != null" >
+        #{badUserid,jdbcType=BIGINT},
+      </if>
+      <if test="badTime != null" >
+        #{badTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handcloseId != null" >
+        #{handcloseId,jdbcType=BIGINT},
+      </if>
+      <if test="submittime != null" >
+        #{submittime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jpjproxy.entity.Loan" >
+    update t_loan
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="loanType != null" >
+        loan_type = #{loanType,jdbcType=INTEGER},
+      </if>
+      <if test="reqDate != null" >
+        req_date = #{reqDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reqMoney != null" >
+        req_money = #{reqMoney,jdbcType=INTEGER},
+      </if>
+      <if test="handleFee != null" >
+        handle_fee = #{handleFee,jdbcType=INTEGER},
+      </if>
+      <if test="handleFeePayid != null" >
+        handle_fee_payid = #{handleFeePayid,jdbcType=BIGINT},
+      </if>
+      <if test="downMoney != null" >
+        down_money = #{downMoney,jdbcType=INTEGER},
+      </if>
+      <if test="loanStatus != null" >
+        loan_status = #{loanStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditTime != null" >
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditorId != null" >
+        auditor_id = #{auditorId,jdbcType=BIGINT},
+      </if>
+      <if test="auditRemark != null" >
+        audit_remark = #{auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="downType != null" >
+        down_type = #{downType,jdbcType=INTEGER},
+      </if>
+      <if test="downTime != null" >
+        down_time = #{downTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downerId != null" >
+        downer_id = #{downerId,jdbcType=BIGINT},
+      </if>
+      <if test="downImg != null" >
+        down_img = #{downImg,jdbcType=VARCHAR},
+      </if>
+      <if test="downRemark != null" >
+        down_remark = #{downRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOverdueTime != null" >
+        last_overdue_time = #{lastOverdueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nextOverdueTime != null" >
+        next_overdue_time = #{nextOverdueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lateFee != null" >
+        late_fee = #{lateFee,jdbcType=INTEGER},
+      </if>
+      <if test="offLatefee != null" >
+        off_latefee = #{offLatefee,jdbcType=INTEGER},
+      </if>
+      <if test="paybackPayid != null" >
+        payback_payid = #{paybackPayid,jdbcType=BIGINT},
+      </if>
+      <if test="paybackDate != null" >
+        payback_date = #{paybackDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=BIGINT},
+      </if>
+      <if test="agentMoney != null" >
+        agent_money = #{agentMoney,jdbcType=INTEGER},
+      </if>
+      <if test="subAgentId != null" >
+        sub_agent_id = #{subAgentId,jdbcType=BIGINT},
+      </if>
+      <if test="subAgentMoney != null" >
+        sub_agent_money = #{subAgentMoney,jdbcType=INTEGER},
+      </if>
+      <if test="clientId != null" >
+        client_id = #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="signImg != null" >
+        sign_img = #{signImg,jdbcType=VARCHAR},
+      </if>
+      <if test="overduerId != null" >
+        overduer_id = #{overduerId,jdbcType=BIGINT},
+      </if>
+      <if test="executionstatus != null" >
+        executionstatus = #{executionstatus,jdbcType=INTEGER},
+      </if>
+      <if test="badUserid != null" >
+        bad_userid = #{badUserid,jdbcType=BIGINT},
+      </if>
+      <if test="badTime != null" >
+        bad_time = #{badTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handcloseId != null" >
+        handclose_id = #{handcloseId,jdbcType=BIGINT},
+      </if>
+      <if test="submittime != null" >
+        submitTime = #{submittime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jpjproxy.entity.Loan" >
+    update t_loan
+    set company_id = #{companyId,jdbcType=BIGINT},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      loan_type = #{loanType,jdbcType=INTEGER},
+      req_date = #{reqDate,jdbcType=TIMESTAMP},
+      req_money = #{reqMoney,jdbcType=INTEGER},
+      handle_fee = #{handleFee,jdbcType=INTEGER},
+      handle_fee_payid = #{handleFeePayid,jdbcType=BIGINT},
+      down_money = #{downMoney,jdbcType=INTEGER},
+      loan_status = #{loanStatus,jdbcType=INTEGER},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      auditor_id = #{auditorId,jdbcType=BIGINT},
+      audit_remark = #{auditRemark,jdbcType=VARCHAR},
+      down_type = #{downType,jdbcType=INTEGER},
+      down_time = #{downTime,jdbcType=TIMESTAMP},
+      downer_id = #{downerId,jdbcType=BIGINT},
+      down_img = #{downImg,jdbcType=VARCHAR},
+      down_remark = #{downRemark,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      last_overdue_time = #{lastOverdueTime,jdbcType=TIMESTAMP},
+      next_overdue_time = #{nextOverdueTime,jdbcType=TIMESTAMP},
+      late_fee = #{lateFee,jdbcType=INTEGER},
+      off_latefee = #{offLatefee,jdbcType=INTEGER},
+      payback_payid = #{paybackPayid,jdbcType=BIGINT},
+      payback_date = #{paybackDate,jdbcType=TIMESTAMP},
+      agent_id = #{agentId,jdbcType=BIGINT},
+      agent_money = #{agentMoney,jdbcType=INTEGER},
+      sub_agent_id = #{subAgentId,jdbcType=BIGINT},
+      sub_agent_money = #{subAgentMoney,jdbcType=INTEGER},
+      client_id = #{clientId,jdbcType=VARCHAR},
+      sign_img = #{signImg,jdbcType=VARCHAR},
+      overduer_id = #{overduerId,jdbcType=BIGINT},
+      executionstatus = #{executionstatus,jdbcType=INTEGER},
+      bad_userid = #{badUserid,jdbcType=BIGINT},
+      bad_time = #{badTime,jdbcType=TIMESTAMP},
+      handclose_id = #{handcloseId,jdbcType=BIGINT},
+      submitTime = #{submittime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <!--<select id="listCustomerIdByLoan" resultType="java.lang.Long">-->
+      <!--<![CDATA[-->
+      <!--SELECT customer_id FROM `t_loan` WHERE id in-->
+      <!--(SELECT MIN(id) FROM `t_loan` GROUP BY `customer_id`)  and `loan_status` =5 and DATEDIFF(`payback_date`,  `end_time`) > 3 LIMIT 250-->
+      <!--UNION-->
+      <!--SELECT customer_id FROM `t_loan` WHERE id in-->
+      <!--(SELECT MIN(id) FROM `t_loan` GROUP BY `customer_id`)  and `loan_status` =5 and DATEDIFF(`payback_date`,  `end_time`) <= 3  and DATEDIFF(`payback_date`,  `end_time`) >0 LIMIT 250-->
+      <!--UNION-->
+      <!--SELECT customer_id FROM `t_loan` WHERE id in-->
+      <!--(SELECT MIN(id) FROM `t_loan` GROUP BY `customer_id`)  and `loan_status` =5 and DATEDIFF(`payback_date`,  `end_time`) <=0 LIMIT 250-->
+      <!--UNION-->
+      <!--(select `customer_id`  from t_loan where `loan_status` =3 and `end_time` <DATE_SUB(curdate(),interval 7 day)-->
+
+      <!--and id  in (select MIN(id) from t_loan   GROUP BY customer_id) limit 250)-->
+      <!--]]>-->
+  <!--</select>-->
+  <select id="listCustomerIdByLoan" resultType="java.lang.Long">
+    <![CDATA[
+      (SELECT customer_id FROM `t_loan`
+        WHERE `id` IN (SELECT MIN(id) from `t_loan` WHERE `loan_status` >2 GROUP BY `customer_id` )
+        and `loan_status`=5
+        and payback_date<=`end_time`
+        and `audit_time` <= '2018-12-03 23:59:59'
+        ORDER BY RAND()
+        LIMIT 2278)
+        UNION
+        (SELECT customer_id FROM `t_loan`
+        WHERE `id` IN (SELECT MIN(id) from `t_loan` WHERE `loan_status` >2 GROUP BY `customer_id` )
+        and `loan_status`=3
+        -- and DATEDIFF(now(), `end_time`)>=7
+        and `audit_time` <= '2018-12-03 23:59:59'
+        ORDER BY RAND()
+        LIMIT 617)
+        UNION
+        (SELECT customer_id FROM `t_loan`
+        WHERE `id` IN (SELECT MIN(id) from `t_loan` WHERE `loan_status` >2 GROUP BY `customer_id` )
+        and `loan_status`=5
+        and DATEDIFF(`payback_date`,  `end_time`)>0
+        and `audit_time` <= '2018-12-03 23:59:59'
+        ORDER BY RAND()
+        LIMIT 105)
+      ]]>
+  </select>
+</mapper>

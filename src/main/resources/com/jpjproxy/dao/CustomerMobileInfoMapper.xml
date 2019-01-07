@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jpjproxy.dao.CustomerMobileInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.jpjproxy.entity.CustomerMobileInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+    <result column="phone_no" property="phoneNo" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="INTEGER" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="carrier" property="carrier" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="open_time" property="openTime" jdbcType="TIMESTAMP" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="package_name" property="packageName" jdbcType="VARCHAR" />
+    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+    <result column="report_file" property="reportFile" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="audit_status" property="auditStatus" jdbcType="INTEGER" />
+    <result column="audit_remark" property="auditRemark" jdbcType="VARCHAR" />
+    <result column="available_balance" property="availableBalance" jdbcType="INTEGER" />
+    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP" />
+    <result column="auth_channel" property="authChannel" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="TINYINT" />
+    <result column="channel_remark" property="channelRemark" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jpjproxy.entity.CustomerMobileInfo" extends="BaseResultMap" >
+    <result column="report_message" property="reportMessage" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, company_id, customer_id, phone_no, code, message, name, idcard, carrier, province, 
+    city, open_time, level, package_name, file_path, report_file, state, audit_status, 
+    audit_remark, available_balance, last_modify_time,  channel, channel_remark, auth_channel
+  </sql>
+  <sql id="Blob_Column_List" >
+    report_message
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_customer_mobile_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_customer_mobile_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jpjproxy.entity.CustomerMobileInfo" >
+    insert into t_customer_mobile_info (id, company_id, customer_id, 
+      phone_no, code, message, 
+      name, idcard, carrier, 
+      province, city, open_time, 
+      level, package_name, file_path, 
+      report_file, state, audit_status, 
+      audit_remark, available_balance, last_modify_time, 
+      auth_channel, channel, channel_remark, 
+      report_message)
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, #{customerId,jdbcType=BIGINT}, 
+      #{phoneNo,jdbcType=VARCHAR}, #{code,jdbcType=INTEGER}, #{message,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{carrier,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{openTime,jdbcType=TIMESTAMP}, 
+      #{level,jdbcType=VARCHAR}, #{packageName,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, 
+      #{reportFile,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{auditStatus,jdbcType=INTEGER}, 
+      #{auditRemark,jdbcType=VARCHAR}, #{availableBalance,jdbcType=INTEGER}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
+      #{authChannel,jdbcType=VARCHAR}, #{channel,jdbcType=TINYINT}, #{channelRemark,jdbcType=VARCHAR}, 
+      #{reportMessage,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jpjproxy.entity.CustomerMobileInfo" >
+    insert into t_customer_mobile_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="phoneNo != null" >
+        phone_no,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="carrier != null" >
+        carrier,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="openTime != null" >
+        open_time,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="packageName != null" >
+        package_name,
+      </if>
+      <if test="filePath != null" >
+        file_path,
+      </if>
+      <if test="reportFile != null" >
+        report_file,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="auditRemark != null" >
+        audit_remark,
+      </if>
+      <if test="availableBalance != null" >
+        available_balance,
+      </if>
+      <if test="lastModifyTime != null" >
+        last_modify_time,
+      </if>
+      <if test="authChannel != null" >
+        auth_channel,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="channelRemark != null" >
+        channel_remark,
+      </if>
+      <if test="reportMessage != null" >
+        report_message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="phoneNo != null" >
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=INTEGER},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="carrier != null" >
+        #{carrier,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null" >
+        #{openTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="packageName != null" >
+        #{packageName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null" >
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="reportFile != null" >
+        #{reportFile,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditRemark != null" >
+        #{auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="availableBalance != null" >
+        #{availableBalance,jdbcType=INTEGER},
+      </if>
+      <if test="lastModifyTime != null" >
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="authChannel != null" >
+        #{authChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=TINYINT},
+      </if>
+      <if test="channelRemark != null" >
+        #{channelRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="reportMessage != null" >
+        #{reportMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jpjproxy.entity.CustomerMobileInfo" >
+    update t_customer_mobile_info
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="phoneNo != null" >
+        phone_no = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=INTEGER},
+      </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="carrier != null" >
+        carrier = #{carrier,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null" >
+        open_time = #{openTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="packageName != null" >
+        package_name = #{packageName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null" >
+        file_path = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="reportFile != null" >
+        report_file = #{reportFile,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditRemark != null" >
+        audit_remark = #{auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="availableBalance != null" >
+        available_balance = #{availableBalance,jdbcType=INTEGER},
+      </if>
+      <if test="lastModifyTime != null" >
+        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="authChannel != null" >
+        auth_channel = #{authChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=TINYINT},
+      </if>
+      <if test="channelRemark != null" >
+        channel_remark = #{channelRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="reportMessage != null" >
+        report_message = #{reportMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jpjproxy.entity.CustomerMobileInfo" >
+    update t_customer_mobile_info
+    set company_id = #{companyId,jdbcType=BIGINT},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      phone_no = #{phoneNo,jdbcType=VARCHAR},
+      code = #{code,jdbcType=INTEGER},
+      message = #{message,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      carrier = #{carrier,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      open_time = #{openTime,jdbcType=TIMESTAMP},
+      level = #{level,jdbcType=VARCHAR},
+      package_name = #{packageName,jdbcType=VARCHAR},
+      file_path = #{filePath,jdbcType=VARCHAR},
+      report_file = #{reportFile,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      audit_status = #{auditStatus,jdbcType=INTEGER},
+      audit_remark = #{auditRemark,jdbcType=VARCHAR},
+      available_balance = #{availableBalance,jdbcType=INTEGER},
+      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      auth_channel = #{authChannel,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=TINYINT},
+      channel_remark = #{channelRemark,jdbcType=VARCHAR},
+      report_message = #{reportMessage,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jpjproxy.entity.CustomerMobileInfo" >
+    update t_customer_mobile_info
+    set company_id = #{companyId,jdbcType=BIGINT},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      phone_no = #{phoneNo,jdbcType=VARCHAR},
+      code = #{code,jdbcType=INTEGER},
+      message = #{message,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      carrier = #{carrier,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      open_time = #{openTime,jdbcType=TIMESTAMP},
+      level = #{level,jdbcType=VARCHAR},
+      package_name = #{packageName,jdbcType=VARCHAR},
+      file_path = #{filePath,jdbcType=VARCHAR},
+      report_file = #{reportFile,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      audit_status = #{auditStatus,jdbcType=INTEGER},
+      audit_remark = #{auditRemark,jdbcType=VARCHAR},
+      available_balance = #{availableBalance,jdbcType=INTEGER},
+      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      auth_channel = #{authChannel,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=TINYINT},
+      channel_remark = #{channelRemark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByCustomerId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_customer_mobile_info
+    where customer_id=#{customerId} order by id desc limit 0, 1
+  </select>
+</mapper>

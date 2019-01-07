@@ -1,0 +1,9 @@
+ignore:
+    ignoreLoginUrlList:
+      - /
+      - /login
+      - /user/login
+      - /reset
+      - /user/resetSubmit
+      - /error
+

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jpjproxy.dao.CustomerCertifyMapper" >
+  <resultMap id="BaseResultMap" type="com.jpjproxy.entity.CustomerCertify" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+    <result column="img_1" property="img1" jdbcType="VARCHAR" />
+    <result column="img_2" property="img2" jdbcType="VARCHAR" />
+    <result column="img_3" property="img3" jdbcType="VARCHAR" />
+    <result column="card_valid" property="cardValid" jdbcType="VARCHAR" />
+    <result column="submit_time" property="submitTime" jdbcType="TIMESTAMP" />
+    <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="audit_id" property="auditId" jdbcType="BIGINT" />
+    <result column="audit_status" property="auditStatus" jdbcType="INTEGER" />
+    <result column="audit_remark" property="auditRemark" jdbcType="VARCHAR" />
+    <result column="reg_city" property="regCity" jdbcType="VARCHAR" />
+    <result column="reg_address" property="regAddress" jdbcType="VARCHAR" />
+    <result column="card_city" property="cardCity" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="TINYINT" />
+    <result column="channel_remark" property="channelRemark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, company_id, customer_id, img_1, img_2, img_3, card_valid, submit_time, audit_time, 
+    audit_id, audit_status, audit_remark, reg_city, reg_address, card_city, channel, 
+    channel_remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_customer_certify
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_customer_certify
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jpjproxy.entity.CustomerCertify" >
+    insert into t_customer_certify (id, company_id, customer_id, 
+      img_1, img_2, img_3, card_valid, 
+      submit_time, audit_time, audit_id, 
+      audit_status, audit_remark, reg_city, 
+      reg_address, card_city, channel, 
+      channel_remark)
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, #{customerId,jdbcType=BIGINT}, 
+      #{img1,jdbcType=VARCHAR}, #{img2,jdbcType=VARCHAR}, #{img3,jdbcType=VARCHAR}, #{cardValid,jdbcType=VARCHAR}, 
+      #{submitTime,jdbcType=TIMESTAMP}, #{auditTime,jdbcType=TIMESTAMP}, #{auditId,jdbcType=BIGINT}, 
+      #{auditStatus,jdbcType=INTEGER}, #{auditRemark,jdbcType=VARCHAR}, #{regCity,jdbcType=VARCHAR}, 
+      #{regAddress,jdbcType=VARCHAR}, #{cardCity,jdbcType=VARCHAR}, #{channel,jdbcType=TINYINT}, 
+      #{channelRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jpjproxy.entity.CustomerCertify" >
+    insert into t_customer_certify
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="img1 != null" >
+        img_1,
+      </if>
+      <if test="img2 != null" >
+        img_2,
+      </if>
+      <if test="img3 != null" >
+        img_3,
+      </if>
+      <if test="cardValid != null" >
+        card_valid,
+      </if>
+      <if test="submitTime != null" >
+        submit_time,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
+      </if>
+      <if test="auditId != null" >
+        audit_id,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="auditRemark != null" >
+        audit_remark,
+      </if>
+      <if test="regCity != null" >
+        reg_city,
+      </if>
+      <if test="regAddress != null" >
+        reg_address,
+      </if>
+      <if test="cardCity != null" >
+        card_city,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="channelRemark != null" >
+        channel_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="img1 != null" >
+        #{img1,jdbcType=VARCHAR},
+      </if>
+      <if test="img2 != null" >
+        #{img2,jdbcType=VARCHAR},
+      </if>
+      <if test="img3 != null" >
+        #{img3,jdbcType=VARCHAR},
+      </if>
+      <if test="cardValid != null" >
+        #{cardValid,jdbcType=VARCHAR},
+      </if>
+      <if test="submitTime != null" >
+        #{submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditId != null" >
+        #{auditId,jdbcType=BIGINT},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditRemark != null" >
+        #{auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="regCity != null" >
+        #{regCity,jdbcType=VARCHAR},
+      </if>
+      <if test="regAddress != null" >
+        #{regAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cardCity != null" >
+        #{cardCity,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=TINYINT},
+      </if>
+      <if test="channelRemark != null" >
+        #{channelRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jpjproxy.entity.CustomerCertify" >
+    update t_customer_certify
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="img1 != null" >
+        img_1 = #{img1,jdbcType=VARCHAR},
+      </if>
+      <if test="img2 != null" >
+        img_2 = #{img2,jdbcType=VARCHAR},
+      </if>
+      <if test="img3 != null" >
+        img_3 = #{img3,jdbcType=VARCHAR},
+      </if>
+      <if test="cardValid != null" >
+        card_valid = #{cardValid,jdbcType=VARCHAR},
+      </if>
+      <if test="submitTime != null" >
+        submit_time = #{submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditTime != null" >
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditId != null" >
+        audit_id = #{auditId,jdbcType=BIGINT},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditRemark != null" >
+        audit_remark = #{auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="regCity != null" >
+        reg_city = #{regCity,jdbcType=VARCHAR},
+      </if>
+      <if test="regAddress != null" >
+        reg_address = #{regAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cardCity != null" >
+        card_city = #{cardCity,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=TINYINT},
+      </if>
+      <if test="channelRemark != null" >
+        channel_remark = #{channelRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jpjproxy.entity.CustomerCertify" >
+    update t_customer_certify
+    set company_id = #{companyId,jdbcType=BIGINT},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      img_1 = #{img1,jdbcType=VARCHAR},
+      img_2 = #{img2,jdbcType=VARCHAR},
+      img_3 = #{img3,jdbcType=VARCHAR},
+      card_valid = #{cardValid,jdbcType=VARCHAR},
+      submit_time = #{submitTime,jdbcType=TIMESTAMP},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      audit_id = #{auditId,jdbcType=BIGINT},
+      audit_status = #{auditStatus,jdbcType=INTEGER},
+      audit_remark = #{auditRemark,jdbcType=VARCHAR},
+      reg_city = #{regCity,jdbcType=VARCHAR},
+      reg_address = #{regAddress,jdbcType=VARCHAR},
+      card_city = #{cardCity,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=TINYINT},
+      channel_remark = #{channelRemark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByCusId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from t_customer_certify
+    where customer_id = #{customerId,jdbcType=BIGINT}
+
+    order by id desc limit 0,1
+  </select>
+</mapper>

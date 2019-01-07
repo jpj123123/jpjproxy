@@ -1,0 +1,32 @@
+#默认使用配置
+#spring:
+#  profiles:
+#    active: dev
+
+#公共配置与profiles选择无关 mapperLocations指的路径是src/main/resources
+mybatis:
+  typeAliasesPackage: com.jpjproxy.entity
+  mapperLocations: classpath*:com/jpjproxy/dao/*.xml
+
+#开发配置
+spring:
+#  profiles: dev
+#rm-bp1ua45se7xz1337y.mysql.rds.aliyuncs.com xihadai
+#rm-bp1yc75i08xwiq59j.mysql.rds.aliyuncs.com xiaotuqiandai
+#rm-bp1g06730s0ieilj6o.mysql.rds.aliyuncs.com feizhushidai
+#rm-bp117j1520nz7c7z7.mysql.rds.aliyuncs.com hahashidai
+#rm-bp1692e03azh76336.mysql.rds.aliyuncs.com jinyudai
+#rm-bp1hh77f8tjbwu43b.mysql.rds.aliyuncs.com mirenhua
+#rm-bp1z5lnfssl4bgws2.mysql.rds.aliyuncs.com xixihua
+#rm-bp1r6l683w31d550h.mysql.rds.aliyuncs.com tianmaobaika
+#rm-bp16a6g4oi974987s.mysql.rds.aliyuncs.com jingyushidai
+#rm-bp1j91l54z13921s8.mysql.rds.aliyuncs.com donghaiqianbao
+#rm-bp12l03pvc578i64a.mysql.rds.aliyuncs.com huaqiangu
+
+  datasource:
+    url: jdbc:mysql://rm-bp12l03pvc578i64a.mysql.rds.aliyuncs.com:3306/huaqiangu?useUnicode=true&characterEncoding=utf8&useOldAliasMetadataBehavior=true
+    username: huaqiangu
+    password: Zfjr83095520
+    driver-class-name: com.mysql.jdbc.Driver
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource

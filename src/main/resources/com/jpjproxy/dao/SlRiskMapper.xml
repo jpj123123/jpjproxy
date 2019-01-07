@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jpjproxy.dao.SlRiskMapper" >
+  <resultMap id="BaseResultMap" type="com.jpjproxy.entity.SlRisk" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="org_biz_no" property="orgBizNo" jdbcType="VARCHAR" />
+    <result column="scene_id" property="sceneId" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="req_date" property="reqDate" jdbcType="TIMESTAMP" />
+    <result column="res_date" property="resDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jpjproxy.entity.SlRisk" extends="BaseResultMap" >
+    <result column="res_data" property="resData" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, org_biz_no, scene_id, customer_id, score, req_date, res_date
+  </sql>
+  <sql id="Blob_Column_List" >
+    res_data
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_sl_risk
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_sl_risk
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jpjproxy.entity.SlRisk" >
+    insert into t_sl_risk (id, org_biz_no, scene_id, 
+      customer_id, score, req_date, 
+      res_date, res_data)
+    values (#{id,jdbcType=BIGINT}, #{orgBizNo,jdbcType=VARCHAR}, #{sceneId,jdbcType=VARCHAR}, 
+      #{customerId,jdbcType=BIGINT}, #{score,jdbcType=INTEGER}, #{reqDate,jdbcType=TIMESTAMP}, 
+      #{resDate,jdbcType=TIMESTAMP}, #{resData,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jpjproxy.entity.SlRisk" >
+    insert into t_sl_risk
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orgBizNo != null" >
+        org_biz_no,
+      </if>
+      <if test="sceneId != null" >
+        scene_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="reqDate != null" >
+        req_date,
+      </if>
+      <if test="resDate != null" >
+        res_date,
+      </if>
+      <if test="resData != null" >
+        res_data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orgBizNo != null" >
+        #{orgBizNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneId != null" >
+        #{sceneId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="reqDate != null" >
+        #{reqDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resDate != null" >
+        #{resDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resData != null" >
+        #{resData,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jpjproxy.entity.SlRisk" >
+    update t_sl_risk
+    <set >
+      <if test="orgBizNo != null" >
+        org_biz_no = #{orgBizNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneId != null" >
+        scene_id = #{sceneId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="reqDate != null" >
+        req_date = #{reqDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resDate != null" >
+        res_date = #{resDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resData != null" >
+        res_data = #{resData,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jpjproxy.entity.SlRisk" >
+    update t_sl_risk
+    set org_biz_no = #{orgBizNo,jdbcType=VARCHAR},
+      scene_id = #{sceneId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      score = #{score,jdbcType=INTEGER},
+      req_date = #{reqDate,jdbcType=TIMESTAMP},
+      res_date = #{resDate,jdbcType=TIMESTAMP},
+      res_data = #{resData,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jpjproxy.entity.SlRisk" >
+    update t_sl_risk
+    set org_biz_no = #{orgBizNo,jdbcType=VARCHAR},
+      scene_id = #{sceneId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      score = #{score,jdbcType=INTEGER},
+      req_date = #{reqDate,jdbcType=TIMESTAMP},
+      res_date = #{resDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

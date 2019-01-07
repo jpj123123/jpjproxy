@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jpjproxy.dao.CustomerAddrbookMapper" >
+  <resultMap id="BaseResultMap" type="com.jpjproxy.entity.CustomerAddrbook" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+    <result column="addr_type" property="addrType" jdbcType="INTEGER" />
+    <result column="phone_no" property="phoneNo" jdbcType="VARCHAR" />
+    <result column="phone_name" property="phoneName" jdbcType="VARCHAR" />
+    <result column="relation" property="relation" jdbcType="VARCHAR" />
+    <result column="is_realtive" property="isRealtive" jdbcType="INTEGER" />
+    <result column="calls_number" property="callsNumber" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, company_id, customer_id, addr_type, phone_no, phone_name, relation, is_realtive, 
+    calls_number
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_customer_addrbook
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_customer_addrbook
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jpjproxy.entity.CustomerAddrbook" >
+    insert into t_customer_addrbook (id, company_id, customer_id, 
+      addr_type, phone_no, phone_name, 
+      relation, is_realtive, calls_number
+      )
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, #{customerId,jdbcType=BIGINT}, 
+      #{addrType,jdbcType=INTEGER}, #{phoneNo,jdbcType=VARCHAR}, #{phoneName,jdbcType=VARCHAR}, 
+      #{relation,jdbcType=VARCHAR}, #{isRealtive,jdbcType=INTEGER}, #{callsNumber,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jpjproxy.entity.CustomerAddrbook" >
+    insert into t_customer_addrbook
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="addrType != null" >
+        addr_type,
+      </if>
+      <if test="phoneNo != null" >
+        phone_no,
+      </if>
+      <if test="phoneName != null" >
+        phone_name,
+      </if>
+      <if test="relation != null" >
+        relation,
+      </if>
+      <if test="isRealtive != null" >
+        is_realtive,
+      </if>
+      <if test="callsNumber != null" >
+        calls_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="addrType != null" >
+        #{addrType,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNo != null" >
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneName != null" >
+        #{phoneName,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null" >
+        #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="isRealtive != null" >
+        #{isRealtive,jdbcType=INTEGER},
+      </if>
+      <if test="callsNumber != null" >
+        #{callsNumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jpjproxy.entity.CustomerAddrbook" >
+    update t_customer_addrbook
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="addrType != null" >
+        addr_type = #{addrType,jdbcType=INTEGER},
+      </if>
+      <if test="phoneNo != null" >
+        phone_no = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneName != null" >
+        phone_name = #{phoneName,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null" >
+        relation = #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="isRealtive != null" >
+        is_realtive = #{isRealtive,jdbcType=INTEGER},
+      </if>
+      <if test="callsNumber != null" >
+        calls_number = #{callsNumber,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jpjproxy.entity.CustomerAddrbook" >
+    update t_customer_addrbook
+    set company_id = #{companyId,jdbcType=BIGINT},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      addr_type = #{addrType,jdbcType=INTEGER},
+      phone_no = #{phoneNo,jdbcType=VARCHAR},
+      phone_name = #{phoneName,jdbcType=VARCHAR},
+      relation = #{relation,jdbcType=VARCHAR},
+      is_realtive = #{isRealtive,jdbcType=INTEGER},
+      calls_number = #{callsNumber,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
