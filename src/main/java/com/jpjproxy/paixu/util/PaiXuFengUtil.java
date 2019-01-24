@@ -94,7 +94,7 @@ public class PaiXuFengUtil {
     public String gizHttpPost(PaixuRequestBody paixuRequestBody) {
 
         String req = JSONObject.toJSONString(paixuRequestBody);
-        log.info("请求排序风控数据: URL:{}, req: {}", PAIXU_URL, req);
+//        log.info("请求排序风控数据: URL:{}, req: {}", PAIXU_URL, req);
         String res = null;
         try {
             res = HttpClientUtil.gzipDoPost(PAIXU_URL, req);

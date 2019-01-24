@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Slf4j
-@Component
+//@Component
 public class MyStartupRunner2 implements CommandLineRunner {
     @Resource
     private CustomerService customerService;

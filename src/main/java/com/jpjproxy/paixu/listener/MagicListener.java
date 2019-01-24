@@ -13,6 +13,7 @@ import com.jpjproxy.paixu.event.MagicEvent;
 import com.jpjproxy.paixu.service.*;
 import com.jpjproxy.paixu.util.PaiXuFengUtil;
 import com.jpjproxy.service.CustomerService;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
@@ -178,10 +179,11 @@ public class MagicListener implements ApplicationListener<MagicEvent> {
         PaiXuFengUtil paiXuFengUtil = new PaiXuFengUtil();
         logger.info("排序分调用第三方接口，customerPhone:{}",paixuRequestBody.getMobile());
         logger.info("请求排序风控数据:  req: {}", JSON.toJSONString(paixuRequestBody));
-        return;
-//        String responseStr = paiXuFengUtil.gizHttpPost(paixuRequestBody);
-//        //对报文的处理。
-//        processResponse(responseStr,customer);
+        //return;
+        String responseStr = paiXuFengUtil.gizHttpPost(paixuRequestBody);
+        //对报文的处理。
+//        FileUtils.writeByteArrayToFile(, , );
+        processResponse(responseStr,customer);
     }
 
     /**
