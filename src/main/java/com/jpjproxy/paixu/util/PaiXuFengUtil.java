@@ -35,8 +35,8 @@ public class PaiXuFengUtil {
 
     private static String PAIXU_MERCHANTID = "510014";
     private static String PAIXU_PRODUCTID = "10072";
-//    private static String PAIXU_URL = "http://47.94.221.154:8003/risk/gzip/";
-    private static String PAIXU_URL = "http://172.16.101.134/risk/gzip/";
+    private static String PAIXU_URL = "http://47.94.221.154:8003/risk/gzip/";
+//    private static String PAIXU_URL = "http://172.16.101.134/risk/gzip/";
 //    private static String PAIXU_URL = "http://risk.rank-tech.com/risk/loanApplyReport/";
 //    private static String PAIXU_PUBLICKEY = GlobalConfig.getProperty("paixufeng", "PAIXU_PUBLICKEY");
 //    private static String PAIXU_YONGJUN_PUBLICKEY = GlobalConfig.getProperty("paixufeng", "PAIXU_YONGJUN_PUBLICKEY");

@@ -169,9 +169,9 @@ public class MagicListener implements ApplicationListener<MagicEvent> {
         //运营商报文
         paixuRequestBody.setCarrier_data(carrierData);
         if(MobileInfoConstants.AUTH_CHANNEL_MOHE.equals(carrierData.getAuthChannel())){//魔盒数据
-            paixuRequestBody.setModel_name("zhaofan_v2");
+            paixuRequestBody.setModel_name("zhaofan_v2_offline");
         } else {//魔蝎数据
-            paixuRequestBody.setModel_name("zhaofan_v1");
+            paixuRequestBody.setModel_name("zhaofan_v1_offline");
         }
         //---------以上为请求对象的封装
         //调用排序分接口
