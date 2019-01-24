@@ -26,6 +26,7 @@ import org.springframework.util.Assert;
 import util.DateUtils;
 
 import javax.annotation.Resource;
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
@@ -182,7 +183,7 @@ public class MagicListener implements ApplicationListener<MagicEvent> {
         //return;
         String responseStr = paiXuFengUtil.gizHttpPost(paixuRequestBody);
         //对报文的处理。
-//        FileUtils.writeByteArrayToFile(, , );
+
         processResponse(responseStr,customer);
     }
 
@@ -224,8 +225,8 @@ public class MagicListener implements ApplicationListener<MagicEvent> {
             //先删除排序分数据,再保存新的数据
 //            String delSql = "delete from t_risk_result where customer_id = ? ";
 //            riskResultService.executeUpdate(customer.getId());
-            riskResultService.save(tRiskResult);
-
+//            riskResultService.save(tRiskResult);
+            FileUtils.writeByteArrayToFile(new File("/home/application/temp/res.txt"), JSON.toJSONString(tRiskResult).getBytes("UTF8"), true);
 
         } catch (Exception e) {
             logger.error("保存排序分失败：" + e.getMessage());
